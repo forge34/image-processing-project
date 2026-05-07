@@ -10,7 +10,7 @@ def detect_face_yunet(img):
     face_img = img.copy()
     h, w = face_img.shape[:2]
     detector.setInputSize((w, h))
-
+    thickness = max(1, int(min(img.shape[:2]) * 0.005))
     start_time = time.time()
     _, faces = detector.detect(face_img)
     end_time = time.time()
@@ -18,7 +18,7 @@ def detect_face_yunet(img):
     if faces is not None:
         for face in faces:
             x, y, fw, fh = int(face[0]), int(face[1]), int(face[2]), int(face[3])
-            cv2.rectangle(face_img, (x, y), (x + fw, y + fh), (255, 255, 255), 5)
+            cv2.rectangle(face_img, (x, y), (x + fw, y + fh), (0, 255, 0), thickness)
 
     num_faces = len(faces) if faces is not None else 0
     return face_img, num_faces, (end_time - start_time)
