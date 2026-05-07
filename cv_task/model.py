@@ -1,8 +1,9 @@
 import cv2
 import time
+from pathlib import Path
 
-face_cascade = cv2.CascadeClassifier("./assets/haarcascade_frontalface_default.xml")
-
+model_path = Path("assets/haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier(model_path)
 
 def detect_face(img):
     face_img = img.copy()
