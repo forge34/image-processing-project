@@ -2,8 +2,10 @@ import cv2
 import time
 from pathlib import Path
 
-model_path = Path("assets/haarcascade_frontalface_default.xml")
-face_cascade = cv2.CascadeClassifier(model_path)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+model_path = BASE_DIR / "assets" / "haarcascade_frontalface_default.xml"
+face_cascade = cv2.CascadeClassifier(str(model_path))
 
 def detect_face(img):
     face_img = img.copy()

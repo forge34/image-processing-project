@@ -2,8 +2,8 @@ import cv2
 import time
 from pathlib import Path
 
-model_path = Path("assets/face_detection_yunet_2023mar.onnx")
-
+BASE_DIR = Path(__file__).resolve().parent.parent
+model_path = BASE_DIR / "assets" / "face_detection_yunet_2023mar.onnx"
 detector = cv2.FaceDetectorYN.create(str(model_path), "", (320, 320),score_threshold=0.6,nms_threshold=0.3,top_k=5000)
 
 def detect_face_yunet(img):
